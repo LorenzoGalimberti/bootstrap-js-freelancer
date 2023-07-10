@@ -1,0 +1,15 @@
+/* animazione vibrazione */
+@keyframes vibrazione {
+    0% { transform: translateX(0); }
+    20% { transform: translateX(-.25em); }
+    40% { transform: translateX(.25em); }
+    60% { transform: translateX(-.25em); }
+    80% { transform: translateX(.25em); }
+    100% { transform: translateX(0); }
+  }
+
+
+  .errore{
+    animation: vibrazione 0.5s ease-in-out;
+    border: 1px solid red;
+  }
