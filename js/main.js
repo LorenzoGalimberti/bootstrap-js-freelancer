@@ -21,3 +21,45 @@ Quando l’utente clicca sul pulsante “Send”, se il codice promozionale inse
 Se il codice inserito è valido, dopo aver calcolato il prezzo scontato, eliminare quel codice dall’elenco dei codici sconto disponibili, in modo che non sia più utilizzabile.
 
 */
+
+
+let sendButton= document.getElementById("submitButton");
+
+sendButton.addEventListener("click", function (event) {
+    event.preventDefault(); // Prevent form submission
+    // VARIABILI
+    const backend=20.5;
+    const frontend=15.3;
+    const project=33.6;
+    // 1) ESTRARRE IL TIPO DI LAVORO e le ore richieste
+    let tipoLavoro= document.getElementById("inputTypeWork").value;
+    let oreRichieste=parseInt(document.getElementById("inputHoursRequested").value);
+    let prezzoFinale=0;
+    //validationMessageHours
+    if (oreRichieste < 0) {
+        validationMessageHours.innerHTML = "Perfavore inserire un numero positivo .";
+      } else {
+        validationMessageHours.innerHTML = "";
+        if (tipoLavoro=='Backend Development'){
+            prezzoFinale=oreRichieste*backend;
+            
+        }else if (tipoLavoro=='Frontend Development'){
+            prezzoFinale=oreRichieste*frontend;
+            
+        }else if (tipoLavoro == 'Project Analisys'){
+            prezzoFinale=oreRichieste*project;
+            
+        }
+        
+        // inserimento del prezzo finale nell html
+
+        document.getElementById("finalPrice").innerHTML = "il prezzo finale è di "+ prezzoFinale.toFixed(2) + " €";
+
+    
+    }
+    
+    
+
+    
+    
+  })
