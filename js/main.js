@@ -31,11 +31,16 @@ sendButton.addEventListener("click", function (event) {
     const backend=20.5;
     const frontend=15.3;
     const project=33.6;
-    // 1) ESTRARRE IL TIPO DI LAVORO e le ore richieste
+
+    const promoCodes=["YHDNU32","JANJC63","PWKCN25","SJDPO96","POCIE24"];
+    const discount=0.25;
+    // 1) ESTRARRE IL TIPO DI LAVORO e le ore richieste e il codice promo
     let tipoLavoro= document.getElementById("inputTypeWork").value;
     let oreRichieste=parseInt(document.getElementById("inputHoursRequested").value);
     let prezzoFinale=0;
-    //validationMessageHours
+    let promoCode=document.getElementById("inputDiscountCode").value;
+
+    console.log(promoCode);
     if (oreRichieste < 0) {
         validationMessageHours.innerHTML = "Perfavore inserire un numero positivo .";
       } else {
@@ -50,7 +55,14 @@ sendButton.addEventListener("click", function (event) {
             prezzoFinale=oreRichieste*project;
             
         }
-        
+        // rimaneggiamento del prezzo se presente un codice promo valido 
+        if (promoCodes.includes(promoCode)){
+            // console.log("funziona");
+            prezzoFinale=prezzoFinale*(1-discount);
+        }else{
+            //validationMessageDiscount
+            validationMessageDiscount.innerHTML = "Codice sconto non valido .";
+        }
         // inserimento del prezzo finale nell html
 
         document.getElementById("finalPrice").innerHTML = "il prezzo finale è di "+ prezzoFinale.toFixed(2) + " €";
@@ -58,7 +70,7 @@ sendButton.addEventListener("click", function (event) {
     
     }
     
-    
+        
 
     
     
